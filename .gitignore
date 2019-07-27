@@ -1,2 +1,13 @@
 
 clipboardScript.class
+.DS_Store
+.idea/encodings.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/modules.xml
+clipboardRegister.iml
+out/production/clipboardRegister/.idea/modules.xml
+out/production/clipboardRegister/clipboardRegister.iml
+out/production/clipboardRegister/LICENSE
+out/production/clipboardRegister/README.md

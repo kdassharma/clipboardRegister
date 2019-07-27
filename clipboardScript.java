@@ -1,20 +1,26 @@
 import java.math.*;
 import java.util.*;
-import java.awt.HeadlessException;
-import java.awt.Toolkit;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
+import java.awt.*;
+import java.awt.datatransfer.*;
+
+
 public class clipboardScript{
 
     //global dictionary declaration
-    static Dictionary<String, Integer> d = new Hashtable<String, Integer>();
+    static Dictionary<String,Integer> dict = new Hashtable<String, Integer>();
 
     public static void main(String[] args){
-    	//prints out the clipboard, but goes really slow for some reason??
-  		System.out.println(readClipboard());
-        
-
+        int numberOfInputs = 1;
+        dict.put(readClipboard(),numberOfInputs);
+        System.out.println(readClipboard());
+        while(true) {
+            if(dict.get(readClipboard()) == null) {
+                numberOfInputs++;
+                dict.put(readClipboard(), numberOfInputs);
+                System.out.println(readClipboard());
+            }
+        }
+        /*
         //tests for the dictionary
         addToDictionary("hi");
         addToDictionary("hello");
@@ -25,34 +31,18 @@ public class clipboardScript{
         for (Enumeration<String> k = d.keys(); k.hasMoreElements();) 
         { 
             System.out.println("Key: " + k.nextElement() + " Value: " + i.nextElement()); 
-        }  
+        }  */
     }
 
     public static String readClipboard(){
-      	String clipboard = "";
+      	String content = "";
       	try {
-      		clipboard = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
+      		content += (String)(Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor));
   		}
-        catch(UnsupportedFlavorException e) {
+        catch(Exception e) {
       		e.printStackTrace();
   		}
-  		catch(IOException e) {
-      		e.printStackTrace();
-  		}
-  		return clipboard;
-	}
-
-
-	public static void addToDictionary(String s){
-        //check if already in dictionary
-        if(d.get(s)!=null){
-            //add 1 to counter
-            d.put(s, ((int) d.get(s)) + 1);
-        }
-        //otherwise put it into the dictionary
-        else{
-            d.put(s, 1);
-        }    
+  		return content;
 	}
 
 
