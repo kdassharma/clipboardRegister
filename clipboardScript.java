@@ -7,43 +7,38 @@ import java.awt.datatransfer.*;
 public class clipboardScript{
 
     //global dictionary declaration
-    static Dictionary<String,Integer> dict = new Hashtable<String, Integer>();
+    static Dictionary<String,Integer> list = new Hashtable<String, Integer>();
+    static Toolkit toolkit = Toolkit.getDefaultToolkit();
+    static Clipboard clipboard = toolkit.getSystemClipboard();
+    static int counter = 1;
 
     public static void main(String[] args){
-        int numberOfInputs = 1;
-        dict.put(readClipboard(),numberOfInputs);
-        System.out.println(readClipboard());
+        list.put(readClipboard(),counter);
+        System.out.println(list.get(readClipboard()));
+        counter++;
         while(true) {
-            if(dict.get(readClipboard()) == null) {
-                numberOfInputs++;
-                dict.put(readClipboard(), numberOfInputs);
-                System.out.println(readClipboard());
+            if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor) && list.get(readClipboard()) == null) {
+                list.put(readClipboard(),counter);
+                System.out.println(list.get(readClipboard()));
+                counter++;
+
             }
         }
-        /*
-        //tests for the dictionary
-        addToDictionary("hi");
-        addToDictionary("hello");
-        addToDictionary("hi");
-        addToDictionary("hi");
-        //this prints the dictionary
-        Enumeration<Integer> i = d.elements();
-        for (Enumeration<String> k = d.keys(); k.hasMoreElements();) 
-        { 
-            System.out.println("Key: " + k.nextElement() + " Value: " + i.nextElement()); 
-        }  */
+
+
     }
 
     public static String readClipboard(){
-      	String content = "";
-      	try {
-      		content += (String)(Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor));
-  		}
+        String content = "";
+        try{
+            content = (String) clipboard.getData(DataFlavor.stringFlavor);
+        }
         catch(Exception e) {
-      		e.printStackTrace();
-  		}
-  		return content;
-	}
+            e.printStackTrace();
+        }
+
+        return content;
+    }
 
 
 }
