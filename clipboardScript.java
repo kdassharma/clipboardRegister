@@ -12,23 +12,22 @@ public class clipboardScript{
     static Clipboard clipboard = toolkit.getSystemClipboard();
     static int counter = 1;
 
-    public static void main(String[] args){
-        list.put(readClipboard(),counter);
-        System.out.println(list.get(readClipboard()));
+    public void trackClipboard() {
+        list.put(getClipboard(), counter);
+        System.out.println(list.get(getClipboard()));
         counter++;
-        while(true) {
-            if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor) && list.get(readClipboard()) == null) {
-                list.put(readClipboard(),counter);
-                System.out.println(list.get(readClipboard()));
+        while (true) {
+            if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor) && list.get(getClipboard()) == null) {
+                list.put(getClipboard(), counter);
+                System.out.println(getClipboard());
                 counter++;
 
             }
         }
-
-
     }
 
-    public static String readClipboard(){
+
+    public String getClipboard(){
         String content = "";
         try{
             content = (String) clipboard.getData(DataFlavor.stringFlavor);
