@@ -12,7 +12,8 @@ public class clipboardScript{
     static Clipboard clipboard = toolkit.getSystemClipboard();
     static int counter = 1;
 
-    public void trackClipboard() {
+
+    public static void main (String[] args) {
         list.put(getClipboard(), counter);
         System.out.println(list.get(getClipboard()));
         counter++;
@@ -27,7 +28,7 @@ public class clipboardScript{
     }
 
 
-    public String getClipboard(){
+    public static String getClipboard(){
         String content = "";
         try{
             content = (String) clipboard.getData(DataFlavor.stringFlavor);
