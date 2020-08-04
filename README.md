@@ -28,7 +28,7 @@ $ pip install -r requirements.txt
 > Start application
 
 ```shell
-$ python clipboardRegister.py
+$ python clipboard_Register.py
 ```
 
 ---
