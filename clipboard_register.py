@@ -48,7 +48,7 @@ while True:
         tempFrame.place(relx=0,rely=(1/(MAX_MEMORY)) * (CURRENT_FRAME), relwidth=1 ,relheight = (1/(MAX_MEMORY)))
   
         # Creating the label for the message itself
-        contentLabel = tk.Label(tempFrame, text=TEMPORARY_CLIPBOARD_CONTENT,font=('Courier',10))
+        contentLabel = tk.Label(tempFrame, wraplength=500, text=TEMPORARY_CLIPBOARD_CONTENT,font=('Courier',10))
         contentLabel.place(relwidth=1, relheight = 1)       
 
         # Creating the label for the time
