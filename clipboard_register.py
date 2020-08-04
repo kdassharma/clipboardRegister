@@ -11,9 +11,10 @@ import pyperclip
 
 CANVAS_HEIGHT = 700
 CANVAS_WIDTH = 500
-MAX_MEMORY = 10
-CURRENT_FRAME = 1
+MAX_MEMORY = 5
+CURRENT_FRAME = 0
 CURRENT_CLIPBOARD_CONTENT = ''
+labelArray = []
 
 root = tk.Tk()
 
@@ -22,22 +23,19 @@ canvas.pack()
 
 while True: 
 
-    titleFrame = tk.Frame(root, bg = '#000000', highlightbackground="black", highlightthickness=0.5)
-    titleFrame.place(relx=0,rely=0, relwidth=1, relheight = (1/(MAX_MEMORY+1)))
-
-    backgroundImg = ImageTk.PhotoImage(Image.open("./assets/frame_background.jpg")) 
-    # backroundLabel = tk.Label(titleFrame, image = backgroundImg)
-    # backroundLabel.place(relwidth=1, relheight=1)
-
     TEMPORARY_CLIPBOARD_CONTENT = root.clipboard_get()
 
     if CURRENT_CLIPBOARD_CONTENT != TEMPORARY_CLIPBOARD_CONTENT:
+
+        if CURRENT_FRAME == MAX_MEMORY:
+            canvas.delete("all")
+            CURRENT_FRAME = 0
 
         t = time.localtime()
         current_time = time.strftime("%H:%M:%S", t)
         
         tempFrame = tk.Frame(root, bg = '#f2f2f2', highlightbackground="black", highlightthickness=0.5)
-        tempFrame.place(relx=0,rely=(1/(MAX_MEMORY+1)) * (CURRENT_FRAME), relwidth=1 ,relheight = (1/(MAX_MEMORY+1)))
+        tempFrame.place(relx=0,rely=(1/(MAX_MEMORY)) * (CURRENT_FRAME), relwidth=1 ,relheight = (1/(MAX_MEMORY)))
   
         contentLabel = tk.Label(tempFrame, text=TEMPORARY_CLIPBOARD_CONTENT,font=('Courier',10))
         contentLabel.place(relwidth=1, relheight = 1)       
@@ -63,3 +61,5 @@ root.mainloop()
 # old 
 # new
 # newer
+# newest
+# random
