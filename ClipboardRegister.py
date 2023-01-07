@@ -18,7 +18,7 @@ class ClipboardRegister:
                 if self.clipboard != curr:
                     print(curr)
                     self.clipboard = curr
-                    f.write("\n" + self.clipboard)
+                    f.write("\n \n" + self.clipboard)
                     f.flush()  # Write to file immediately
 
     def clear(self, seconds):
