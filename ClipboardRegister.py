@@ -16,6 +16,7 @@ class ClipboardRegister:
                 time.sleep(1)
                 curr = pyperclip.paste()
                 if self.clipboard != curr:
+                    print(curr)
                     self.clipboard = curr
                     f.write("\n" + self.clipboard)
                     f.flush()  # Write to file immediately
