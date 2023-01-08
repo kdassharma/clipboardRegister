@@ -14,6 +14,7 @@ class ClipboardHistory:
             contents = f.read()
         self.text.delete(1.0, tk.END)  # Clear current text
         self.text.insert(tk.END, contents)  # Insert new text
+        self.root.after(1000, self.update_text)  # Schedule next update
 
 if __name__ == "__main__":
     filepath = "ClipboardRegister.txt"
